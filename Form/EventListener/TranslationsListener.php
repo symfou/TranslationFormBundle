@@ -56,13 +56,14 @@ class TranslationsListener implements EventSubscriberInterface
     public function preSubmit(FormEvent $event)
     {
         $data = $event->getData();
-
+		if ($data){
         foreach ($data as $locale => $translation) {
             // Detect and trace unused locale
             if (!array_filter($translation)) {
                 $this->unusedLocales[$locale] = $locale;
             }
         }
+		}
     }
     
     /**
